@@ -42,11 +42,11 @@ def index(request):
     )
     most_fresh_posts = (
         Post.objects
-            .order_by('-published_at')[:MOST_POPULAR_TAGS_COUNT]
+            .order_by('-published_at')[:MOST_FRESH_POSTS_COUNT]
             .prefetch_related('author')
             .fetch_with_tags_posts()
             .fetch_with_comments_count()
-    )[:MOST_FRESH_POSTS_COUNT]
+    )
 
     most_popular_tags = Tag.objects.popular()
 
